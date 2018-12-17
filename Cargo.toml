@@ -1,6 +1,6 @@
 [package]
 name = "outline"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Cameron Eldridge <cameldridge+git@gmail.com>"]
 description = "WASM bindings for Outline (Literate programming tool)"
 homepage = "https://github.com/oinkiguana/outline-js"
@@ -13,5 +13,5 @@ edition = "2018"
 crate-type = ["cdylib"]
 
 [dependencies]
-outline = "0.1"
+outline = "0.1.2"
 wasm-bindgen = "0.2"
