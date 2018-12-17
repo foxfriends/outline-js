@@ -18,6 +18,10 @@ impl MdParser {
         self
     }
 
+    pub fn fence_sequence(&self) -> String {
+        self.parser.fence_sequence.clone()
+    }
+
     pub fn set_block_name_start(mut self, block_name_start: String) -> Self {
         self.parser.block_name_start = block_name_start;
         self

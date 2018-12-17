@@ -48,16 +48,16 @@ function isLikeNone(x) {
     return x === undefined || x === null;
 }
 
-function freeMdParser(ptr) {
+function freeTexParser(ptr) {
 
-    wasm.__wbg_mdparser_free(ptr);
+    wasm.__wbg_texparser_free(ptr);
 }
 /**
 */
-export class MdParser {
+export class TexParser {
 
     static __wrap(ptr) {
-        const obj = Object.create(MdParser.prototype);
+        const obj = Object.create(TexParser.prototype);
         obj.ptr = ptr;
 
         return obj;
@@ -66,43 +66,32 @@ export class MdParser {
     free() {
         const ptr = this.ptr;
         this.ptr = 0;
-        freeMdParser(ptr);
+        freeTexParser(ptr);
     }
 
     /**
     * @returns {}
     */
     constructor() {
-        this.ptr = wasm.mdparser_new();
+        this.ptr = wasm.texparser_new();
     }
     /**
     * @param {string} arg0
-    * @returns {MdParser}
+    * @returns {TexParser}
     */
-    set_fence_sequence(arg0) {
+    set_code_environment(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_fence_sequence(ptr, ptr0, len0));
-    }
-    /**
-    * @param {string} arg0
-    * @returns {MdParser}
-    */
-    set_block_name_start(arg0) {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_block_name_start(ptr, ptr0, len0));
+        return TexParser.__wrap(wasm.texparser_set_code_environment(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
-    block_name_start() {
+    code_environment() {
         const retptr = globalArgumentPtr();
-        wasm.mdparser_block_name_start(retptr, this.ptr);
+        wasm.texparser_code_environment(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -114,62 +103,21 @@ export class MdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {MdParser}
-    */
-    set_block_name_end(arg0) {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        const ptr0 = isLikeNone(arg0) ? [0, 0] : passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_block_name_end(ptr, ptr0, len0));
-    }
-    /**
-    * @returns {string}
-    */
-    block_name_end() {
-        const retptr = globalArgumentPtr();
-        wasm.mdparser_block_name_end(retptr, this.ptr);
-        const mem = getUint32Memory();
-        const rustptr = mem[retptr / 4];
-        const rustlen = mem[retptr / 4 + 1];
-        if (rustptr === 0) return;
-        const realRet = getStringFromWasm(rustptr, rustlen).slice();
-        wasm.__wbindgen_free(rustptr, rustlen * 1);
-        return realRet;
-
-    }
-    /**
-    * @param {boolean} arg0
-    * @returns {MdParser}
-    */
-    set_comments_as_aside(arg0) {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        return MdParser.__wrap(wasm.mdparser_set_comments_as_aside(ptr, arg0));
-    }
-    /**
-    * @returns {boolean}
-    */
-    comments_as_aside() {
-        return (wasm.mdparser_comments_as_aside(this.ptr)) !== 0;
-    }
-    /**
-    * @param {string} arg0
-    * @returns {MdParser}
+    * @returns {TexParser}
     */
     set_default_language(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = isLikeNone(arg0) ? [0, 0] : passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_default_language(ptr, ptr0, len0));
+        return TexParser.__wrap(wasm.texparser_set_default_language(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     default_language() {
         const retptr = globalArgumentPtr();
-        wasm.mdparser_default_language(retptr, this.ptr);
+        wasm.texparser_default_language(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -181,21 +129,21 @@ export class MdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {MdParser}
+    * @returns {TexParser}
     */
     set_comment_start(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_comment_start(ptr, ptr0, len0));
+        return TexParser.__wrap(wasm.texparser_set_comment_start(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     comment_start() {
         const retptr = globalArgumentPtr();
-        wasm.mdparser_comment_start(retptr, this.ptr);
+        wasm.texparser_comment_start(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -207,21 +155,21 @@ export class MdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {MdParser}
+    * @returns {TexParser}
     */
     set_interpolation_start(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_interpolation_start(ptr, ptr0, len0));
+        return TexParser.__wrap(wasm.texparser_set_interpolation_start(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     interpolation_start() {
         const retptr = globalArgumentPtr();
-        wasm.mdparser_interpolation_start(retptr, this.ptr);
+        wasm.texparser_interpolation_start(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -233,21 +181,21 @@ export class MdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {MdParser}
+    * @returns {TexParser}
     */
     set_interpolation_end(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_interpolation_end(ptr, ptr0, len0));
+        return TexParser.__wrap(wasm.texparser_set_interpolation_end(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     interpolation_end() {
         const retptr = globalArgumentPtr();
-        wasm.mdparser_interpolation_end(retptr, this.ptr);
+        wasm.texparser_interpolation_end(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -259,21 +207,21 @@ export class MdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {MdParser}
+    * @returns {TexParser}
     */
     set_macro_start(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_macro_start(ptr, ptr0, len0));
+        return TexParser.__wrap(wasm.texparser_set_macro_start(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     macro_start() {
         const retptr = globalArgumentPtr();
-        wasm.mdparser_macro_start(retptr, this.ptr);
+        wasm.texparser_macro_start(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -285,21 +233,21 @@ export class MdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {MdParser}
+    * @returns {TexParser}
     */
     set_macro_end(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return MdParser.__wrap(wasm.mdparser_set_macro_end(ptr, ptr0, len0));
+        return TexParser.__wrap(wasm.texparser_set_macro_end(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     macro_end() {
         const retptr = globalArgumentPtr();
-        wasm.mdparser_macro_end(retptr, this.ptr);
+        wasm.texparser_macro_end(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -310,7 +258,6 @@ export class MdParser {
 
     }
     /**
-    * Tangles a Markdown document
     * @param {string} arg0
     * @param {string} arg1
     * @param {string} arg2
@@ -325,7 +272,7 @@ export class MdParser {
         const len2 = WASM_VECTOR_LEN;
         const retptr = globalArgumentPtr();
         try {
-            wasm.mdparser_tangle(retptr, this.ptr, ptr0, len0, ptr1, len1, ptr2, len2);
+            wasm.texparser_tangle(retptr, this.ptr, ptr0, len0, ptr1, len1, ptr2, len2);
             const mem = getUint32Memory();
             const rustptr = mem[retptr / 4];
             const rustlen = mem[retptr / 4 + 1];
@@ -342,7 +289,6 @@ export class MdParser {
 
     }
     /**
-    * Weaves a Markdown document
     * @param {string} arg0
     * @returns {string}
     */
@@ -351,7 +297,274 @@ export class MdParser {
         const len0 = WASM_VECTOR_LEN;
         const retptr = globalArgumentPtr();
         try {
-            wasm.mdparser_weave(retptr, this.ptr, ptr0, len0);
+            wasm.texparser_weave(retptr, this.ptr, ptr0, len0);
+            const mem = getUint32Memory();
+            const rustptr = mem[retptr / 4];
+            const rustlen = mem[retptr / 4 + 1];
+
+            const realRet = getStringFromWasm(rustptr, rustlen).slice();
+            wasm.__wbindgen_free(rustptr, rustlen * 1);
+            return realRet;
+
+
+        } finally {
+            wasm.__wbindgen_free(ptr0, len0 * 1);
+
+        }
+
+    }
+}
+
+function freeBirdParser(ptr) {
+
+    wasm.__wbg_birdparser_free(ptr);
+}
+/**
+*/
+export class BirdParser {
+
+    static __wrap(ptr) {
+        const obj = Object.create(BirdParser.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        freeBirdParser(ptr);
+    }
+
+    /**
+    * @returns {}
+    */
+    constructor() {
+        this.ptr = wasm.birdparser_new();
+    }
+    /**
+    * @param {string} arg0
+    * @returns {BirdParser}
+    */
+    set_code_marker(arg0) {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        return BirdParser.__wrap(wasm.birdparser_set_code_marker(ptr, ptr0, len0));
+    }
+    /**
+    * @returns {string}
+    */
+    code_marker() {
+        const retptr = globalArgumentPtr();
+        wasm.birdparser_code_marker(retptr, this.ptr);
+        const mem = getUint32Memory();
+        const rustptr = mem[retptr / 4];
+        const rustlen = mem[retptr / 4 + 1];
+
+        const realRet = getStringFromWasm(rustptr, rustlen).slice();
+        wasm.__wbindgen_free(rustptr, rustlen * 1);
+        return realRet;
+
+    }
+    /**
+    * @param {string} arg0
+    * @returns {BirdParser}
+    */
+    set_code_name_marker(arg0) {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        return BirdParser.__wrap(wasm.birdparser_set_code_name_marker(ptr, ptr0, len0));
+    }
+    /**
+    * @returns {string}
+    */
+    code_name_marker() {
+        const retptr = globalArgumentPtr();
+        wasm.birdparser_code_name_marker(retptr, this.ptr);
+        const mem = getUint32Memory();
+        const rustptr = mem[retptr / 4];
+        const rustlen = mem[retptr / 4 + 1];
+
+        const realRet = getStringFromWasm(rustptr, rustlen).slice();
+        wasm.__wbindgen_free(rustptr, rustlen * 1);
+        return realRet;
+
+    }
+    /**
+    * @param {string} arg0
+    * @returns {BirdParser}
+    */
+    set_comment_start(arg0) {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        return BirdParser.__wrap(wasm.birdparser_set_comment_start(ptr, ptr0, len0));
+    }
+    /**
+    * @returns {string}
+    */
+    comment_start() {
+        const retptr = globalArgumentPtr();
+        wasm.birdparser_comment_start(retptr, this.ptr);
+        const mem = getUint32Memory();
+        const rustptr = mem[retptr / 4];
+        const rustlen = mem[retptr / 4 + 1];
+
+        const realRet = getStringFromWasm(rustptr, rustlen).slice();
+        wasm.__wbindgen_free(rustptr, rustlen * 1);
+        return realRet;
+
+    }
+    /**
+    * @param {string} arg0
+    * @returns {BirdParser}
+    */
+    set_interpolation_start(arg0) {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        return BirdParser.__wrap(wasm.birdparser_set_interpolation_start(ptr, ptr0, len0));
+    }
+    /**
+    * @returns {string}
+    */
+    interpolation_start() {
+        const retptr = globalArgumentPtr();
+        wasm.birdparser_interpolation_start(retptr, this.ptr);
+        const mem = getUint32Memory();
+        const rustptr = mem[retptr / 4];
+        const rustlen = mem[retptr / 4 + 1];
+
+        const realRet = getStringFromWasm(rustptr, rustlen).slice();
+        wasm.__wbindgen_free(rustptr, rustlen * 1);
+        return realRet;
+
+    }
+    /**
+    * @param {string} arg0
+    * @returns {BirdParser}
+    */
+    set_interpolation_end(arg0) {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        return BirdParser.__wrap(wasm.birdparser_set_interpolation_end(ptr, ptr0, len0));
+    }
+    /**
+    * @returns {string}
+    */
+    interpolation_end() {
+        const retptr = globalArgumentPtr();
+        wasm.birdparser_interpolation_end(retptr, this.ptr);
+        const mem = getUint32Memory();
+        const rustptr = mem[retptr / 4];
+        const rustlen = mem[retptr / 4 + 1];
+
+        const realRet = getStringFromWasm(rustptr, rustlen).slice();
+        wasm.__wbindgen_free(rustptr, rustlen * 1);
+        return realRet;
+
+    }
+    /**
+    * @param {string} arg0
+    * @returns {BirdParser}
+    */
+    set_macro_start(arg0) {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        return BirdParser.__wrap(wasm.birdparser_set_macro_start(ptr, ptr0, len0));
+    }
+    /**
+    * @returns {string}
+    */
+    macro_start() {
+        const retptr = globalArgumentPtr();
+        wasm.birdparser_macro_start(retptr, this.ptr);
+        const mem = getUint32Memory();
+        const rustptr = mem[retptr / 4];
+        const rustlen = mem[retptr / 4 + 1];
+
+        const realRet = getStringFromWasm(rustptr, rustlen).slice();
+        wasm.__wbindgen_free(rustptr, rustlen * 1);
+        return realRet;
+
+    }
+    /**
+    * @param {string} arg0
+    * @returns {BirdParser}
+    */
+    set_macro_end(arg0) {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        return BirdParser.__wrap(wasm.birdparser_set_macro_end(ptr, ptr0, len0));
+    }
+    /**
+    * @returns {string}
+    */
+    macro_end() {
+        const retptr = globalArgumentPtr();
+        wasm.birdparser_macro_end(retptr, this.ptr);
+        const mem = getUint32Memory();
+        const rustptr = mem[retptr / 4];
+        const rustlen = mem[retptr / 4 + 1];
+
+        const realRet = getStringFromWasm(rustptr, rustlen).slice();
+        wasm.__wbindgen_free(rustptr, rustlen * 1);
+        return realRet;
+
+    }
+    /**
+    * @param {string} arg0
+    * @param {string} arg1
+    * @param {string} arg2
+    * @returns {string}
+    */
+    tangle(arg0, arg1, arg2) {
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = isLikeNone(arg1) ? [0, 0] : passStringToWasm(arg1);
+        const len1 = WASM_VECTOR_LEN;
+        const ptr2 = isLikeNone(arg2) ? [0, 0] : passStringToWasm(arg2);
+        const len2 = WASM_VECTOR_LEN;
+        const retptr = globalArgumentPtr();
+        try {
+            wasm.birdparser_tangle(retptr, this.ptr, ptr0, len0, ptr1, len1, ptr2, len2);
+            const mem = getUint32Memory();
+            const rustptr = mem[retptr / 4];
+            const rustlen = mem[retptr / 4 + 1];
+
+            const realRet = getStringFromWasm(rustptr, rustlen).slice();
+            wasm.__wbindgen_free(rustptr, rustlen * 1);
+            return realRet;
+
+
+        } finally {
+            wasm.__wbindgen_free(ptr0, len0 * 1);
+
+        }
+
+    }
+    /**
+    * @param {string} arg0
+    * @returns {string}
+    */
+    weave(arg0) {
+        const ptr0 = passStringToWasm(arg0);
+        const len0 = WASM_VECTOR_LEN;
+        const retptr = globalArgumentPtr();
+        try {
+            wasm.birdparser_weave(retptr, this.ptr, ptr0, len0);
             const mem = getUint32Memory();
             const rustptr = mem[retptr / 4];
             const rustlen = mem[retptr / 4 + 1];
@@ -755,16 +968,16 @@ export class HtmlParser {
     }
 }
 
-function freeBirdParser(ptr) {
+function freeMdParser(ptr) {
 
-    wasm.__wbg_birdparser_free(ptr);
+    wasm.__wbg_mdparser_free(ptr);
 }
 /**
 */
-export class BirdParser {
+export class MdParser {
 
     static __wrap(ptr) {
-        const obj = Object.create(BirdParser.prototype);
+        const obj = Object.create(MdParser.prototype);
         obj.ptr = ptr;
 
         return obj;
@@ -773,32 +986,32 @@ export class BirdParser {
     free() {
         const ptr = this.ptr;
         this.ptr = 0;
-        freeBirdParser(ptr);
+        freeMdParser(ptr);
     }
 
     /**
     * @returns {}
     */
     constructor() {
-        this.ptr = wasm.birdparser_new();
+        this.ptr = wasm.mdparser_new();
     }
     /**
     * @param {string} arg0
-    * @returns {BirdParser}
+    * @returns {MdParser}
     */
-    set_code_marker(arg0) {
+    set_fence_sequence(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return BirdParser.__wrap(wasm.birdparser_set_code_marker(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_fence_sequence(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
-    code_marker() {
+    fence_sequence() {
         const retptr = globalArgumentPtr();
-        wasm.birdparser_code_marker(retptr, this.ptr);
+        wasm.mdparser_fence_sequence(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -810,21 +1023,21 @@ export class BirdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {BirdParser}
+    * @returns {MdParser}
     */
-    set_code_name_marker(arg0) {
+    set_block_name_start(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return BirdParser.__wrap(wasm.birdparser_set_code_name_marker(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_block_name_start(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
-    code_name_marker() {
+    block_name_start() {
         const retptr = globalArgumentPtr();
-        wasm.birdparser_code_name_marker(retptr, this.ptr);
+        wasm.mdparser_block_name_start(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -836,262 +1049,62 @@ export class BirdParser {
     }
     /**
     * @param {string} arg0
-    * @returns {BirdParser}
+    * @returns {MdParser}
     */
-    set_comment_start(arg0) {
+    set_block_name_end(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
-        const ptr0 = passStringToWasm(arg0);
+        const ptr0 = isLikeNone(arg0) ? [0, 0] : passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return BirdParser.__wrap(wasm.birdparser_set_comment_start(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_block_name_end(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
-    comment_start() {
+    block_name_end() {
         const retptr = globalArgumentPtr();
-        wasm.birdparser_comment_start(retptr, this.ptr);
+        wasm.mdparser_block_name_end(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
-
+        if (rustptr === 0) return;
         const realRet = getStringFromWasm(rustptr, rustlen).slice();
         wasm.__wbindgen_free(rustptr, rustlen * 1);
         return realRet;
 
     }
     /**
-    * @param {string} arg0
-    * @returns {BirdParser}
+    * @param {boolean} arg0
+    * @returns {MdParser}
     */
-    set_interpolation_start(arg0) {
+    set_comments_as_aside(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        return BirdParser.__wrap(wasm.birdparser_set_interpolation_start(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_comments_as_aside(ptr, arg0));
     }
     /**
-    * @returns {string}
+    * @returns {boolean}
     */
-    interpolation_start() {
-        const retptr = globalArgumentPtr();
-        wasm.birdparser_interpolation_start(retptr, this.ptr);
-        const mem = getUint32Memory();
-        const rustptr = mem[retptr / 4];
-        const rustlen = mem[retptr / 4 + 1];
-
-        const realRet = getStringFromWasm(rustptr, rustlen).slice();
-        wasm.__wbindgen_free(rustptr, rustlen * 1);
-        return realRet;
-
+    comments_as_aside() {
+        return (wasm.mdparser_comments_as_aside(this.ptr)) !== 0;
     }
     /**
     * @param {string} arg0
-    * @returns {BirdParser}
-    */
-    set_interpolation_end(arg0) {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        return BirdParser.__wrap(wasm.birdparser_set_interpolation_end(ptr, ptr0, len0));
-    }
-    /**
-    * @returns {string}
-    */
-    interpolation_end() {
-        const retptr = globalArgumentPtr();
-        wasm.birdparser_interpolation_end(retptr, this.ptr);
-        const mem = getUint32Memory();
-        const rustptr = mem[retptr / 4];
-        const rustlen = mem[retptr / 4 + 1];
-
-        const realRet = getStringFromWasm(rustptr, rustlen).slice();
-        wasm.__wbindgen_free(rustptr, rustlen * 1);
-        return realRet;
-
-    }
-    /**
-    * @param {string} arg0
-    * @returns {BirdParser}
-    */
-    set_macro_start(arg0) {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        return BirdParser.__wrap(wasm.birdparser_set_macro_start(ptr, ptr0, len0));
-    }
-    /**
-    * @returns {string}
-    */
-    macro_start() {
-        const retptr = globalArgumentPtr();
-        wasm.birdparser_macro_start(retptr, this.ptr);
-        const mem = getUint32Memory();
-        const rustptr = mem[retptr / 4];
-        const rustlen = mem[retptr / 4 + 1];
-
-        const realRet = getStringFromWasm(rustptr, rustlen).slice();
-        wasm.__wbindgen_free(rustptr, rustlen * 1);
-        return realRet;
-
-    }
-    /**
-    * @param {string} arg0
-    * @returns {BirdParser}
-    */
-    set_macro_end(arg0) {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        return BirdParser.__wrap(wasm.birdparser_set_macro_end(ptr, ptr0, len0));
-    }
-    /**
-    * @returns {string}
-    */
-    macro_end() {
-        const retptr = globalArgumentPtr();
-        wasm.birdparser_macro_end(retptr, this.ptr);
-        const mem = getUint32Memory();
-        const rustptr = mem[retptr / 4];
-        const rustlen = mem[retptr / 4 + 1];
-
-        const realRet = getStringFromWasm(rustptr, rustlen).slice();
-        wasm.__wbindgen_free(rustptr, rustlen * 1);
-        return realRet;
-
-    }
-    /**
-    * @param {string} arg0
-    * @param {string} arg1
-    * @param {string} arg2
-    * @returns {string}
-    */
-    tangle(arg0, arg1, arg2) {
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = isLikeNone(arg1) ? [0, 0] : passStringToWasm(arg1);
-        const len1 = WASM_VECTOR_LEN;
-        const ptr2 = isLikeNone(arg2) ? [0, 0] : passStringToWasm(arg2);
-        const len2 = WASM_VECTOR_LEN;
-        const retptr = globalArgumentPtr();
-        try {
-            wasm.birdparser_tangle(retptr, this.ptr, ptr0, len0, ptr1, len1, ptr2, len2);
-            const mem = getUint32Memory();
-            const rustptr = mem[retptr / 4];
-            const rustlen = mem[retptr / 4 + 1];
-
-            const realRet = getStringFromWasm(rustptr, rustlen).slice();
-            wasm.__wbindgen_free(rustptr, rustlen * 1);
-            return realRet;
-
-
-        } finally {
-            wasm.__wbindgen_free(ptr0, len0 * 1);
-
-        }
-
-    }
-    /**
-    * @param {string} arg0
-    * @returns {string}
-    */
-    weave(arg0) {
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        const retptr = globalArgumentPtr();
-        try {
-            wasm.birdparser_weave(retptr, this.ptr, ptr0, len0);
-            const mem = getUint32Memory();
-            const rustptr = mem[retptr / 4];
-            const rustlen = mem[retptr / 4 + 1];
-
-            const realRet = getStringFromWasm(rustptr, rustlen).slice();
-            wasm.__wbindgen_free(rustptr, rustlen * 1);
-            return realRet;
-
-
-        } finally {
-            wasm.__wbindgen_free(ptr0, len0 * 1);
-
-        }
-
-    }
-}
-
-function freeTexParser(ptr) {
-
-    wasm.__wbg_texparser_free(ptr);
-}
-/**
-*/
-export class TexParser {
-
-    static __wrap(ptr) {
-        const obj = Object.create(TexParser.prototype);
-        obj.ptr = ptr;
-
-        return obj;
-    }
-
-    free() {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        freeTexParser(ptr);
-    }
-
-    /**
-    * @returns {}
-    */
-    constructor() {
-        this.ptr = wasm.texparser_new();
-    }
-    /**
-    * @param {string} arg0
-    * @returns {TexParser}
-    */
-    set_code_environment(arg0) {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        const ptr0 = passStringToWasm(arg0);
-        const len0 = WASM_VECTOR_LEN;
-        return TexParser.__wrap(wasm.texparser_set_code_environment(ptr, ptr0, len0));
-    }
-    /**
-    * @returns {string}
-    */
-    code_environment() {
-        const retptr = globalArgumentPtr();
-        wasm.texparser_code_environment(retptr, this.ptr);
-        const mem = getUint32Memory();
-        const rustptr = mem[retptr / 4];
-        const rustlen = mem[retptr / 4 + 1];
-
-        const realRet = getStringFromWasm(rustptr, rustlen).slice();
-        wasm.__wbindgen_free(rustptr, rustlen * 1);
-        return realRet;
-
-    }
-    /**
-    * @param {string} arg0
-    * @returns {TexParser}
+    * @returns {MdParser}
     */
     set_default_language(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = isLikeNone(arg0) ? [0, 0] : passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return TexParser.__wrap(wasm.texparser_set_default_language(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_default_language(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     default_language() {
         const retptr = globalArgumentPtr();
-        wasm.texparser_default_language(retptr, this.ptr);
+        wasm.mdparser_default_language(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -1103,21 +1116,21 @@ export class TexParser {
     }
     /**
     * @param {string} arg0
-    * @returns {TexParser}
+    * @returns {MdParser}
     */
     set_comment_start(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return TexParser.__wrap(wasm.texparser_set_comment_start(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_comment_start(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     comment_start() {
         const retptr = globalArgumentPtr();
-        wasm.texparser_comment_start(retptr, this.ptr);
+        wasm.mdparser_comment_start(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -1129,21 +1142,21 @@ export class TexParser {
     }
     /**
     * @param {string} arg0
-    * @returns {TexParser}
+    * @returns {MdParser}
     */
     set_interpolation_start(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return TexParser.__wrap(wasm.texparser_set_interpolation_start(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_interpolation_start(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     interpolation_start() {
         const retptr = globalArgumentPtr();
-        wasm.texparser_interpolation_start(retptr, this.ptr);
+        wasm.mdparser_interpolation_start(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -1155,21 +1168,21 @@ export class TexParser {
     }
     /**
     * @param {string} arg0
-    * @returns {TexParser}
+    * @returns {MdParser}
     */
     set_interpolation_end(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return TexParser.__wrap(wasm.texparser_set_interpolation_end(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_interpolation_end(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     interpolation_end() {
         const retptr = globalArgumentPtr();
-        wasm.texparser_interpolation_end(retptr, this.ptr);
+        wasm.mdparser_interpolation_end(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -1181,21 +1194,21 @@ export class TexParser {
     }
     /**
     * @param {string} arg0
-    * @returns {TexParser}
+    * @returns {MdParser}
     */
     set_macro_start(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return TexParser.__wrap(wasm.texparser_set_macro_start(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_macro_start(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     macro_start() {
         const retptr = globalArgumentPtr();
-        wasm.texparser_macro_start(retptr, this.ptr);
+        wasm.mdparser_macro_start(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -1207,21 +1220,21 @@ export class TexParser {
     }
     /**
     * @param {string} arg0
-    * @returns {TexParser}
+    * @returns {MdParser}
     */
     set_macro_end(arg0) {
         const ptr = this.ptr;
         this.ptr = 0;
         const ptr0 = passStringToWasm(arg0);
         const len0 = WASM_VECTOR_LEN;
-        return TexParser.__wrap(wasm.texparser_set_macro_end(ptr, ptr0, len0));
+        return MdParser.__wrap(wasm.mdparser_set_macro_end(ptr, ptr0, len0));
     }
     /**
     * @returns {string}
     */
     macro_end() {
         const retptr = globalArgumentPtr();
-        wasm.texparser_macro_end(retptr, this.ptr);
+        wasm.mdparser_macro_end(retptr, this.ptr);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -1232,6 +1245,7 @@ export class TexParser {
 
     }
     /**
+    * Tangles a Markdown document
     * @param {string} arg0
     * @param {string} arg1
     * @param {string} arg2
@@ -1246,7 +1260,7 @@ export class TexParser {
         const len2 = WASM_VECTOR_LEN;
         const retptr = globalArgumentPtr();
         try {
-            wasm.texparser_tangle(retptr, this.ptr, ptr0, len0, ptr1, len1, ptr2, len2);
+            wasm.mdparser_tangle(retptr, this.ptr, ptr0, len0, ptr1, len1, ptr2, len2);
             const mem = getUint32Memory();
             const rustptr = mem[retptr / 4];
             const rustlen = mem[retptr / 4 + 1];
@@ -1263,6 +1277,7 @@ export class TexParser {
 
     }
     /**
+    * Weaves a Markdown document
     * @param {string} arg0
     * @returns {string}
     */
@@ -1271,7 +1286,7 @@ export class TexParser {
         const len0 = WASM_VECTOR_LEN;
         const retptr = globalArgumentPtr();
         try {
-            wasm.texparser_weave(retptr, this.ptr, ptr0, len0);
+            wasm.mdparser_weave(retptr, this.ptr, ptr0, len0);
             const mem = getUint32Memory();
             const rustptr = mem[retptr / 4];
             const rustlen = mem[retptr / 4 + 1];

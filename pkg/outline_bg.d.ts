@@ -31,6 +31,7 @@ export function htmlparser_weave(a: number, b: number, c: number, d: number): vo
 export function __wbg_mdparser_free(a: number): void;
 export function mdparser_new(): number;
 export function mdparser_set_fence_sequence(a: number, b: number, c: number): number;
+export function mdparser_fence_sequence(a: number, b: number): void;
 export function mdparser_set_block_name_start(a: number, b: number, c: number): number;
 export function mdparser_block_name_start(a: number, b: number): void;
 export function mdparser_set_block_name_end(a: number, b: number, c: number): number;
