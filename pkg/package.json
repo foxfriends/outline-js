@@ -1,0 +1,21 @@
+{
+  "name": "@oinkiguana/outline-js",
+  "collaborators": [
+    "Cameron Eldridge <cameldridge+git@gmail.com>"
+  ],
+  "description": "WASM bindings for Outline (Literate programming tool)",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oinkiguana/outline-js"
+  },
+  "files": [
+    "outline_js_bg.wasm",
+    "outline_js.js",
+    "outline_js.d.ts"
+  ],
+  "module": "outline_js.js",
+  "types": "outline_js.d.ts",
+  "sideEffects": "false"
+}
