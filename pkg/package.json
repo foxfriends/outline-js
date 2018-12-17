@@ -1,5 +1,5 @@
 {
-  "name": "@oinkiguana/outline-js",
+  "name": "@oinkiguana/outline",
   "collaborators": [
     "Cameron Eldridge <cameldridge+git@gmail.com>"
   ],
@@ -11,11 +11,11 @@
     "url": "https://github.com/oinkiguana/outline-js"
   },
   "files": [
-    "outline_js_bg.wasm",
-    "outline_js.js",
-    "outline_js.d.ts"
+    "outline_bg.wasm",
+    "outline.js",
+    "outline.d.ts"
   ],
-  "module": "outline_js.js",
-  "types": "outline_js.d.ts",
+  "module": "outline.js",
+  "types": "outline.d.ts",
   "sideEffects": "false"
 }
