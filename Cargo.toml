@@ -1,6 +1,6 @@
 [package]
 name = "outline"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Cameron Eldridge <cameldridge+git@gmail.com>"]
 description = "WASM bindings for Outline (Literate programming tool)"
 homepage = "https://github.com/oinkiguana/outline-js"

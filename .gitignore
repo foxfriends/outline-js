@@ -1,5 +1,7 @@
 /test/node_modules
 /test/dist
 /target
+/bin
+/pkg
 **/*.rs.bk
 wasm-pack.log
