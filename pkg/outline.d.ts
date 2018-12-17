@@ -1,34 +1,44 @@
 /* tslint:disable */
-export class TexParser {
+export class MdParser {
 free(): void;
 
  constructor();
 
- set_code_environment(arg0: string): TexParser;
+ set_fence_sequence(arg0: string): MdParser;
 
- code_environment(): string;
+ set_block_name_start(arg0: string): MdParser;
 
- set_default_language(arg0: string): TexParser;
+ block_name_start(): string;
+
+ set_block_name_end(arg0: string): MdParser;
+
+ block_name_end(): string;
+
+ set_comments_as_aside(arg0: boolean): MdParser;
+
+ comments_as_aside(): boolean;
+
+ set_default_language(arg0: string): MdParser;
 
  default_language(): string;
 
- set_comment_start(arg0: string): TexParser;
+ set_comment_start(arg0: string): MdParser;
 
  comment_start(): string;
 
- set_interpolation_start(arg0: string): TexParser;
+ set_interpolation_start(arg0: string): MdParser;
 
  interpolation_start(): string;
 
- set_interpolation_end(arg0: string): TexParser;
+ set_interpolation_end(arg0: string): MdParser;
 
  interpolation_end(): string;
 
- set_macro_start(arg0: string): TexParser;
+ set_macro_start(arg0: string): MdParser;
 
  macro_start(): string;
 
- set_macro_end(arg0: string): TexParser;
+ set_macro_end(arg0: string): MdParser;
 
  macro_end(): string;
 
@@ -133,46 +143,36 @@ free(): void;
  weave(arg0: string): string;
 
 }
-export class MdParser {
+export class TexParser {
 free(): void;
 
  constructor();
 
- set_fence_sequence(arg0: string): MdParser;
+ set_code_environment(arg0: string): TexParser;
 
- set_block_name_start(arg0: string): MdParser;
+ code_environment(): string;
 
- block_name_start(): string;
-
- set_block_name_end(arg0: string): MdParser;
-
- block_name_end(): string;
-
- set_comments_as_aside(arg0: boolean): MdParser;
-
- comments_as_aside(): boolean;
-
- set_default_language(arg0: string): MdParser;
+ set_default_language(arg0: string): TexParser;
 
  default_language(): string;
 
- set_comment_start(arg0: string): MdParser;
+ set_comment_start(arg0: string): TexParser;
 
  comment_start(): string;
 
- set_interpolation_start(arg0: string): MdParser;
+ set_interpolation_start(arg0: string): TexParser;
 
  interpolation_start(): string;
 
- set_interpolation_end(arg0: string): MdParser;
+ set_interpolation_end(arg0: string): TexParser;
 
  interpolation_end(): string;
 
- set_macro_start(arg0: string): MdParser;
+ set_macro_start(arg0: string): TexParser;
 
  macro_start(): string;
 
- set_macro_end(arg0: string): MdParser;
+ set_macro_end(arg0: string): TexParser;
 
  macro_end(): string;
 
