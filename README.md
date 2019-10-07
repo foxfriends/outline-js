@@ -1,4 +1,4 @@
-[Outline]: https://github.com/oinkiguana/outline
+[Outline]: https://github.com/foxfriends/outline
 
 # Outline JS
 
